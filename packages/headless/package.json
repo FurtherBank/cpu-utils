@@ -1,0 +1,21 @@
+{
+  "name": "@cpu-utils/headless",
+  "version": "1.0.0",
+  "description": "Headless browser utilities for the monorepo",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "node --test dist/**/*.test.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chrome-cookies-secure": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "*"
+  }
+}
