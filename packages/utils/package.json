@@ -1,0 +1,20 @@
+{
+  "name": "@monorepo-template/utils",
+  "version": "1.0.0",
+  "description": "Shared utilities for the monorepo",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "node --test dist/**/*.test.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "*"
+  }
+}
