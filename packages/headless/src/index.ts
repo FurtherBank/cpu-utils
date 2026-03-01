@@ -1,0 +1,1 @@
+export { getChromeCookie } from './getChromeCookie';

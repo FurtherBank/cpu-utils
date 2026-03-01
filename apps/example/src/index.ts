@@ -1,4 +1,4 @@
-import { capitalise, isDefined, unique } from '@monorepo-template/utils';
+import { capitalise, isDefined, unique } from '@cpu-utils/utils';
 
 const names = ['alice', 'bob', 'alice', 'charlie'];
 const uniqueNames = unique(names);

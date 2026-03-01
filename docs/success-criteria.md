@@ -21,10 +21,10 @@
 
 操作成功的判断标准：
 
-- [ ] `packages/<name>/package.json` 存在，且 `name` 字段为 `@monorepo-template/<name>` 格式。
+- [ ] `packages/<name>/package.json` 存在，且 `name` 字段为 `@cpu-utils/<name>` 格式。
 - [ ] `packages/<name>/tsconfig.json` 存在，且通过 `"extends": "../../tsconfig.json"` 继承根配置。
 - [ ] `packages/<name>/src/index.ts` 存在，作为包的入口文件。
-- [ ] 在根目录执行 `npm install` 后，`node_modules/@monorepo-template/<name>` 软链接存在并指向 `packages/<name>`。
+- [ ] 在根目录执行 `npm install` 后，`node_modules/@cpu-utils/<name>` 软链接存在并指向 `packages/<name>`。
 - [ ] 在 `packages/<name>` 目录下执行 `npm run build` 后，`dist/` 目录生成，其中包含 `index.js` 和 `index.d.ts`（或对应入口文件的编译产物）。
 - [ ] 在根目录执行 `npm run build` 无报错，新 package 被正确纳入构建流程。
 - [ ] 在根目录执行 `npm run lint` 无报错（对新增的 `.ts` 文件生效）。
@@ -36,10 +36,10 @@
 
 操作成功的判断标准：
 
-- [ ] `apps/<name>/package.json` 存在，且 `name` 字段为 `@monorepo-template/<name>` 格式。
+- [ ] `apps/<name>/package.json` 存在，且 `name` 字段为 `@cpu-utils/<name>` 格式。
 - [ ] `apps/<name>/tsconfig.json` 存在，且通过 `"extends": "../../tsconfig.json"` 继承根配置。
 - [ ] `apps/<name>/src/index.ts` 存在，作为应用的入口文件。
-- [ ] 在根目录执行 `npm install` 后，`node_modules/@monorepo-template/<name>` 软链接存在并指向 `apps/<name>`。
+- [ ] 在根目录执行 `npm install` 后，`node_modules/@cpu-utils/<name>` 软链接存在并指向 `apps/<name>`。
 - [ ] 在 `apps/<name>` 目录下执行 `npm run build` 后，`dist/` 目录生成，且无 TypeScript 编译错误。
 - [ ] 在根目录执行 `npm run build` 无报错，新 app 被正确纳入构建流程。
 - [ ] 在根目录执行 `npm run lint` 无报错（对新增的 `.ts` 文件生效）。
@@ -51,8 +51,8 @@
 
 操作成功的判断标准：
 
-- [ ] 引用方的 `package.json` 的 `dependencies` 中已添加 `"@monorepo-template/<dep-name>": "*"`。
-- [ ] 根目录执行 `npm install` 后，引用方的 `node_modules/@monorepo-template/<dep-name>` 软链接正确建立（指向工作区本地包，而非远程包）。
+- [ ] 引用方的 `package.json` 的 `dependencies` 中已添加 `"@cpu-utils/<dep-name>": "*"`。
+- [ ] 根目录执行 `npm install` 后，引用方的 `node_modules/@cpu-utils/<dep-name>` 软链接正确建立（指向工作区本地包，而非远程包）。
 - [ ] 被依赖的 package 已执行 `npm run build`，`dist/` 目录中存在编译产物和类型声明文件（`.d.ts`）。
 - [ ] 引用方在 TypeScript 源码中 `import` 被依赖包时，编辑器或 `npm run typecheck` 不报类型找不到的错误。
 - [ ] 引用方执行 `npm run build` 后无 TypeScript 编译错误，`dist/` 目录正常生成。
@@ -109,7 +109,7 @@
 
 - [ ] 对应的 `packages/<name>` 或 `apps/<name>` 目录已被删除。
 - [ ] 所有依赖该包的其他 `package.json` 中，对应的 `dependencies`/`devDependencies` 条目已被移除。
-- [ ] 根目录执行 `npm install` 后，`node_modules/@monorepo-template/<name>` 软链接已不存在。
+- [ ] 根目录执行 `npm install` 后，`node_modules/@cpu-utils/<name>` 软链接已不存在。
 - [ ] 根目录执行 `npm run build` 无报错（无悬空的模块引用）。
 - [ ] 根目录执行 `npm run lint` 无报错（无对已删除包的 import 残留）。
 - [ ] 根 `package-lock.json` 已更新，不再包含被删除包的记录。

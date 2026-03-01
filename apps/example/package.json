@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo-template/example",
+  "name": "@cpu-utils/example",
   "version": "1.0.0",
   "description": "Example application using the shared utils package",
   "main": "dist/index.js",
@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@monorepo-template/utils": "*"
+    "@cpu-utils/utils": "*"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
