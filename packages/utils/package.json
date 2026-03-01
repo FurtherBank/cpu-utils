@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo-template/utils",
+  "name": "@cpu-utils/utils",
   "version": "1.0.0",
   "description": "Shared utilities for the monorepo",
   "main": "dist/index.js",

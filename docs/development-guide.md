@@ -23,7 +23,7 @@
 ## 1. 仓库结构说明
 
 ```
-monorepo-template/
+cpu-utils/
 ├── apps/                   # 各业务应用
 │   └── example/            # 示例应用
 ├── packages/               # 各共享库
@@ -35,7 +35,7 @@ monorepo-template/
 └── .prettierrc             # 共享 Prettier 配置
 ```
 
-- `packages/`：存放可被多个 App 复用的共享库，发布时以 `@monorepo-template/<name>` 命名。
+- `packages/`：存放可被多个 App 复用的共享库，发布时以 `@cpu-utils/<name>` 命名。
 - `apps/`：存放各业务应用，通常不对外发布。
 - 根目录的 `package.json` 通过 npm workspaces 将所有 package 和 app 统一管理。
 
@@ -71,7 +71,7 @@ mkdir -p packages/<name>/src
 
 ```json
 {
-  "name": "@monorepo-template/<name>",
+  "name": "@cpu-utils/<name>",
   "version": "1.0.0",
   "description": "描述该库的用途",
   "main": "dist/index.js",
@@ -118,7 +118,7 @@ npm install
 
 ### 注意事项
 
-- `package.json` 中的 `name` 字段必须使用 `@monorepo-template/<name>` 格式，与仓库内其他包保持命名空间一致。
+- `package.json` 中的 `name` 字段必须使用 `@cpu-utils/<name>` 格式，与仓库内其他包保持命名空间一致。
 - `"typescript": "*"` 表示复用根工作区安装的 TypeScript 版本，避免版本冲突。
 - `tsconfig.json` 必须通过 `"extends"` 继承根配置，以确保编译选项全局统一。
 - `"files": ["dist"]` 确保只发布编译产物，不包含源码。
@@ -139,7 +139,7 @@ mkdir -p apps/<name>/src
 
 ```json
 {
-  "name": "@monorepo-template/<name>",
+  "name": "@cpu-utils/<name>",
   "version": "1.0.0",
   "description": "描述该应用的用途",
   "main": "dist/index.js",
@@ -198,7 +198,7 @@ npm install
 ```json
 {
   "dependencies": {
-    "@monorepo-template/utils": "*"
+    "@cpu-utils/utils": "*"
   }
 }
 ```
@@ -365,7 +365,7 @@ npm run format
 
 检查失败包的 `tsconfig.json` 是否正确继承根配置，并确认 `include`/`exclude` 路径无误。
 
-### Q：新增的 package 没有出现在 `node_modules/@monorepo-template/` 下？
+### Q：新增的 package 没有出现在 `node_modules/@cpu-utils/` 下？
 
 在根目录重新执行 `npm install`，npm workspaces 会重新建立软链接。
 
@@ -374,6 +374,6 @@ npm run format
 ```bash
 npm run <script> -w <workspace-name-or-path>
 # 示例
-npm run build -w @monorepo-template/utils
+npm run build -w @cpu-utils/utils
 npm run build -w packages/utils
 ```

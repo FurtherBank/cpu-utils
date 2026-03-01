@@ -1,11 +1,11 @@
-# monorepo-template
+# cpu-utils
 
 A monorepo template powered by [npm workspaces](https://docs.npmjs.com/cli/using-npm/workspaces).
 
 ## Structure
 
 ```
-monorepo-template/
+cpu-utils/
 ├── apps/
 │   └── example/          # Example application
 ├── packages/
@@ -54,7 +54,7 @@ npm run build -w apps/example
 ## Adding a new package
 
 1. Create a new directory under `packages/` (for libraries) or `apps/` (for applications).
-2. Add a `package.json` with a scoped name, e.g. `@monorepo-template/my-package`.
+2. Add a `package.json` with a scoped name, e.g. `@cpu-utils/my-package`.
 3. Add a `tsconfig.json` that extends the root configuration.
 4. Run `npm install` from the root to link the new workspace.
 
@@ -63,7 +63,7 @@ To depend on another workspace package, add it to the `dependencies` field with 
 ```json
 {
   "dependencies": {
-    "@monorepo-template/utils": "*"
+    "@cpu-utils/utils": "*"
   }
 }
 ```
