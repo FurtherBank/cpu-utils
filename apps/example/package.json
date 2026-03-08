@@ -1,6 +1,7 @@
 {
   "name": "@cpu-utils/example",
   "version": "1.0.0",
+  "private": true,
   "description": "Example application using the shared utils package",
   "main": "dist/index.js",
   "scripts": {
