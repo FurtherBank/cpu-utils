@@ -3,7 +3,10 @@ import * as assert from 'node:assert';
 
 // Mock chrome-cookies-secure before importing the module under test
 const mockGetCookiesPromised = mock.fn(
-  async (_url: string, _format: string, _profile: string) => 'session=abc123; token=xyz'
+  async (_url: string, format: string, _profile: string): Promise<any> => {
+    if (format === 'header') return 'session=abc123; token=xyz';
+    return { session: 'abc123', token: 'xyz' };
+  }
 );
 
 mock.module('chrome-cookies-secure', {
@@ -22,8 +25,10 @@ describe('chromeFetch', () => {
     const { chromeFetch, CHROME_DEFAULT_HEADERS } = await import('./chromeFetch');
 
     mockGetCookiesPromised.mock.mockImplementationOnce(
-      async (_url: string, _format: string, _profile: string) =>
-        'session=abc123; token=xyz; user=张三'
+      async (_url: string, format: string, _profile: string) => {
+        if (format === 'header') return 'session=abc123; token=xyz; user=张三';
+        return { session: 'abc123', token: 'xyz', user: '张三' };
+      }
     );
 
     const mockFetch = mock.method(globalThis, 'fetch', async () => {

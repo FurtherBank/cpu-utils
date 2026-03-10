@@ -3,7 +3,10 @@ import * as assert from 'node:assert';
 
 // Mock chrome-cookies-secure before importing the module under test
 const mockGetCookiesPromised = mock.fn(
-  async (_url: string, _format: string, _profile: string) => 'cookie1=value1; cookie2=value2'
+  async (_url: string, format: string, _profile: string): Promise<any> => {
+    if (format === 'header') return 'cookie1=value1; cookie2=value2';
+    return { cookie1: 'value1', cookie2: 'value2' };
+  }
 );
 
 mock.module('chrome-cookies-secure', {
@@ -23,7 +26,7 @@ describe('getChromeCookie', () => {
 
     const call = mockGetCookiesPromised.mock.calls[0];
     assert.strictEqual(call.arguments[0], 'https://example.com');
-    assert.strictEqual(call.arguments[1], 'header');
+    assert.strictEqual(call.arguments[1], 'object');
     assert.strictEqual(call.arguments[2], 'Default');
   });
 

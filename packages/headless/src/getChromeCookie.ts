@@ -18,18 +18,18 @@ export async function getChromeCookie(
   url: string,
   profile = 'Default'
 ): Promise<string> {
-  const cookieString: string = await getCookiesPromised(url, 'header', profile);
+  const cookies: Record<string, string> = await getCookiesPromised(
+    url,
+    'object',
+    profile
+  );
 
-  if (!cookieString) return '';
+  if (!cookies || Object.keys(cookies).length === 0) return '';
 
-  // Ensure the cookie string is a valid ByteString (ASCII 0-255) for HTTP headers.
-  // If it contains Unicode characters (> 255), fetch/undici will throw an error.
-  return cookieString
-    .split('; ')
-    .map((pair) => {
-      const [name, ...valueParts] = pair.split('=');
-      const value = valueParts.join('=');
-
+  return Object.entries(cookies)
+    .map(([name, value]) => {
+      // Ensure the cookie string is a valid ByteString (ASCII 0-255) for HTTP headers.
+      // If it contains Unicode characters (> 255), fetch/undici will throw an error.
       // Only encode if the value contains non-ASCII characters
       // eslint-disable-next-line no-control-regex
       if (/[^\x00-\x7F]/.test(value)) {
@@ -37,10 +37,10 @@ export async function getChromeCookie(
           return `${name}=${encodeURIComponent(value)}`;
         } catch (e) {
           // Fallback to original if encoding fails
-          return pair;
+          return `${name}=${value}`;
         }
       }
-      return pair;
+      return `${name}=${value}`;
     })
     .join('; ');
 }
