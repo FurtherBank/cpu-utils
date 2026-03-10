@@ -21,6 +21,11 @@ describe('chromeFetch', () => {
   it('should fetch with Chrome cookies and default headers', async () => {
     const { chromeFetch, CHROME_DEFAULT_HEADERS } = await import('./chromeFetch');
 
+    mockGetCookiesPromised.mock.mockImplementationOnce(
+      async (_url: string, _format: string, _profile: string) =>
+        'session=abc123; token=xyz; user=张三'
+    );
+
     const mockFetch = mock.method(globalThis, 'fetch', async () => {
       return new Response('ok', { status: 200 });
     });
@@ -36,9 +41,13 @@ describe('chromeFetch', () => {
     const [fetchUrl, fetchInit] = mockFetch.mock.calls[0].arguments;
     assert.strictEqual(fetchUrl, 'https://example.com');
 
-    // Verify headers include defaults and cookies
+    // Verify headers include defaults and encoded cookies
     const headers = fetchInit?.headers as Record<string, string>;
-    assert.strictEqual(headers['Cookie'], 'session=abc123; token=xyz');
+    // '张三' should be encoded to '%E5%BC%A0%E4%B8%89'
+    assert.strictEqual(
+      headers['Cookie'],
+      'session=abc123; token=xyz; user=%E5%BC%A0%E4%B8%89'
+    );
     assert.strictEqual(headers['User-Agent'], CHROME_DEFAULT_HEADERS['User-Agent']);
     assert.strictEqual(headers['Accept-Language'], CHROME_DEFAULT_HEADERS['Accept-Language']);
   });
