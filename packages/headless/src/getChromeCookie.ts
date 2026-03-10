@@ -31,6 +31,7 @@ export async function getChromeCookie(
       const value = valueParts.join('=');
 
       // Only encode if the value contains non-ASCII characters
+      // eslint-disable-next-line no-control-regex
       if (/[^\x00-\x7F]/.test(value)) {
         try {
           return `${name}=${encodeURIComponent(value)}`;
