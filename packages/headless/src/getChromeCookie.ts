@@ -32,15 +32,17 @@ export async function getChromeCookie(
       // If it contains Unicode characters (> 255), fetch/undici will throw an error.
       // Only encode if the value contains non-ASCII characters
       // eslint-disable-next-line no-control-regex
-      if (/[^\x00-\x7F]/.test(value)) {
-        try {
-          return `${name}=${encodeURIComponent(value)}`;
-        } catch (e) {
-          // Fallback to original if encoding fails
-          return `${name}=${value}`;
-        }
-      }
+      // if (/[^\x00-\x7F]/.test(value)) {
+      //   try {
+      //     return `${name}=${encodeURIComponent(value)}`;
+      //   } catch (e) {
+      //     // Fallback to original if encoding fails
+      //     return `${name}=${value}`;
+      //   }
+      // }
       return `${name}=${value}`;
     })
     .join('; ');
 }
+
+getChromeCookie('https://www.zhihu.com').then(console.log);
