@@ -1,6 +1,6 @@
 {
   "name": "@cpu-utils/headless",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Headless browser utilities for the monorepo",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
