@@ -44,5 +44,3 @@ export async function getChromeCookie(
     })
     .join('; ');
 }
-
-getChromeCookie('https://www.zhihu.com').then(console.log);
