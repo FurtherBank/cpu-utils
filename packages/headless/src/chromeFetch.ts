@@ -15,6 +15,7 @@ const CHROME_DEFAULT_HEADERS: Record<string, string> = {
   'Sec-Fetch-Mode': 'navigate',
   'Sec-Fetch-Site': 'none',
   'Sec-Fetch-User': '?1',
+  'X-Requested-With': 'XMLHttpRequest',
 };
 
 export { CHROME_DEFAULT_HEADERS };
